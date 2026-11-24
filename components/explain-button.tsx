@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 function AssistantBubble({ children }: { children: React.ReactNode }) {
@@ -19,13 +19,28 @@ function AssistantBubble({ children }: { children: React.ReactNode }) {
 export default function ExplainButton() {
   const [open, setOpen] = useState(false);
 
+  const close = useCallback(() => {
+    if (window.history.state?.explain) window.history.back();
+    else setOpen(false);
+  }, []);
+
   useEffect(() => {
     function handleKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") close();
     }
     document.addEventListener("keydown", handleKey);
     return () => document.removeEventListener("keydown", handleKey);
-  }, []);
+  }, [close]);
+
+  useEffect(() => {
+    if (!open) return;
+    if (!window.history.state?.explain) {
+      window.history.pushState({ explain: true }, "");
+    }
+    const onPop = () => setOpen(false);
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, [open]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -55,7 +70,7 @@ export default function ExplainButton() {
             <div className="flex items-center gap-3">
               <a
                 href="#top"
-                onClick={() => setOpen(false)}
+                onClick={close}
                 className="flex items-center gap-2.5"
               >
                 <span className="flex h-8 w-8 items-center justify-center border-2 border-cream bg-accent text-sm font-black text-ink">
@@ -70,7 +85,7 @@ export default function ExplainButton() {
               </span>
             </div>
             <button
-              onClick={() => setOpen(false)}
+              onClick={close}
               aria-label="Close"
               className="flex h-10 w-10 items-center justify-center border-2 border-cream/30 text-cream transition-colors hover:border-cream hover:bg-cream/10"
             >
@@ -160,7 +175,7 @@ export default function ExplainButton() {
               </p>
               <button
                 onClick={() => {
-                  setOpen(false);
+                  close();
                   document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" });
                 }}
                 className="brutal-press flex-1 border-2 border-ink bg-accent px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-ink sm:flex-none sm:px-10"

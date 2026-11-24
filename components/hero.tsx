@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Reveal from "./reveal";
+import ScreenshotShowcase from "./screenshot-showcase";
 
 export default function Hero() {
   return (
@@ -52,33 +52,7 @@ export default function Hero() {
 
       {/* Screenshot slots */}
       <Reveal delay={200} className="relative mx-auto max-w-6xl px-6 pb-24">
-        <div id="preview" className="grid scroll-mt-24 gap-8 md:grid-cols-5">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border-2 border-ink bg-paper shadow-brutal-lg md:col-span-3">
-            <Image
-              src="/img/screenshot-2.png"
-              alt="Creatr app"
-              fill
-              sizes="(max-width: 768px) 100vw, 60vw"
-              className="object-cover"
-              priority
-            />
-          </div>
-
-          <div className="relative aspect-[4/5] md:col-span-2">
-            <div className="relative h-full overflow-hidden rounded-3xl border-2 border-ink bg-paper shadow-brutal-lg">
-              <Image
-                src="/img/screenshot-1.png"
-                alt="0% commission"
-                fill
-                sizes="(max-width: 768px) 100vw, 40vw"
-                className="object-cover"
-              />
-            </div>
-            <span className="absolute -right-3 -top-5 rotate-6 border-2 border-ink bg-coral px-3 py-1.5 text-sm font-black uppercase tracking-wide text-cream shadow-brutal-sm">
-              0% commission
-            </span>
-          </div>
-        </div>
+        <ScreenshotShowcase />
       </Reveal>
     </section>
   );
