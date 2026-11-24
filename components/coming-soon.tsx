@@ -1,4 +1,5 @@
 import Reveal from "./reveal";
+import WaitlistButton from "./waitlist-button";
 
 export default function ComingSoon() {
   return (
@@ -76,12 +77,7 @@ export default function ComingSoon() {
                   ))}
                 </div>
 
-                <a
-                  href="mailto:switon89@gmail.com?subject=Join%20the%20Creatr%20waitlist"
-                  className="brutal-press mt-8 inline-block border-2 border-ink bg-ink px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-cream"
-                >
-                  Join the Waitlist →
-                </a>
+                <WaitlistButton />
               </div>
             </div>
           </Reveal>
