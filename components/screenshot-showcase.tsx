@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 const shots = [
@@ -22,18 +22,29 @@ const shots = [
 export default function ScreenshotShowcase() {
   const [active, setActive] = useState<(typeof shots)[number] | null>(null);
 
+  const close = useCallback(() => {
+    if (window.history.state?.shot) window.history.back();
+    else setActive(null);
+  }, []);
+
   useEffect(() => {
-    if (!active) return;
     function handleKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setActive(null);
+      if (e.key === "Escape") close();
+    }
+    if (!active) return;
+    if (!window.history.state?.shot) {
+      window.history.pushState({ shot: true }, "");
     }
     document.addEventListener("keydown", handleKey);
+    const onPop = () => setActive(null);
+    window.addEventListener("popstate", onPop);
     document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", handleKey);
+      window.removeEventListener("popstate", onPop);
       document.body.style.overflow = "";
     };
-  }, [active]);
+  }, [active, close]);
 
   return (
     <>
@@ -71,7 +82,7 @@ export default function ScreenshotShowcase() {
         createPortal(
           <div
             className="fixed inset-0 z-[100] flex flex-col bg-ink/95"
-            onClick={() => setActive(null)}
+            onClick={close}
             role="dialog"
             aria-modal="true"
             aria-label={active.alt}
@@ -81,7 +92,7 @@ export default function ScreenshotShowcase() {
                 {active.alt}
               </p>
               <button
-                onClick={() => setActive(null)}
+                onClick={close}
                 aria-label="Close"
                 className="flex h-10 w-10 items-center justify-center border-2 border-cream/40 text-cream transition-colors hover:border-cream hover:bg-cream/10"
               >
