@@ -39,7 +39,7 @@ export default function ExplainButton() {
       <button
         onClick={() => setOpen(true)}
         aria-expanded={open}
-        className="brutal-press flex items-center gap-1.5 border-2 border-ink bg-accent px-3 py-2 text-xs font-bold uppercase tracking-wide text-ink shadow-brutal-sm sm:px-4 sm:text-sm"
+        className="brutal-press flex items-center gap-1 border-2 border-ink bg-accent px-2.5 py-1.5 text-[11px] font-bold uppercase tracking-wide text-ink shadow-brutal-sm sm:px-3 sm:text-xs"
       >
         <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="currentColor">
           <path d="M2 2.5A1.5 1.5 0 013.5 1h9A1.5 1.5 0 0114 2.5v7a1.5 1.5 0 01-1.5 1.5H6l-3.5 3v-3H3.5A1.5 1.5 0 012 9.5v-7z" />

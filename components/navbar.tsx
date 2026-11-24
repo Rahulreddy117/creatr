@@ -30,11 +30,11 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <ExplainButton />
           <a
             href="#waitlist"
-            className="brutal-press rounded-none border-2 border-ink bg-ink px-3 py-2 text-xs font-bold uppercase tracking-wide text-cream shadow-brutal-sm sm:px-4 sm:text-sm"
+            className="brutal-press rounded-none border-2 border-ink bg-ink px-2.5 py-1.5 text-[11px] font-bold uppercase tracking-wide text-cream shadow-brutal-sm sm:px-3 sm:text-xs"
           >
             Join now
           </a>

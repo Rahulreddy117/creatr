@@ -28,16 +28,14 @@ export default function Hero() {
 
         <Reveal delay={240}>
           <p className="mx-auto mt-8 max-w-2xl text-base font-medium leading-relaxed text-ink">
-            From independent filmmakers and entertainers to educators and digital
-            creators, we&apos;re building a platform where every creator has the
-            opportunity to earn directly from their content.
+            A platform where every creator earns directly from their content.
           </p>
         </Reveal>
 
         <Reveal delay={320}>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
-              href="#features"
+              href="#preview"
               className="brutal-press w-full rounded-none border-2 border-ink bg-ink px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-cream shadow-brutal sm:w-auto"
             >
               Explore the Platform
@@ -54,7 +52,7 @@ export default function Hero() {
 
       {/* Screenshot slots */}
       <Reveal delay={200} className="relative mx-auto max-w-6xl px-6 pb-24">
-        <div className="grid gap-8 md:grid-cols-5">
+        <div id="preview" className="grid scroll-mt-24 gap-8 md:grid-cols-5">
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border-2 border-ink bg-paper shadow-brutal-lg md:col-span-3">
             <Image
               src="/img/screenshot-2.png"
