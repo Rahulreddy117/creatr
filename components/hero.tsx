@@ -26,16 +26,8 @@ export default function Hero() {
           </h1>
         </Reveal>
 
-        <Reveal delay={160}>
-          <p className="mx-auto mt-8 max-w-2xl text-base font-medium leading-relaxed text-ink/70 sm:text-lg">
-            A new way for creators to monetize their content through individual
-            video purchases and exclusive subscriptions — with{" "}
-            <span className="font-black text-ink">0% commission</span>.
-          </p>
-        </Reveal>
-
         <Reveal delay={240}>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-ink/50">
+          <p className="mx-auto mt-8 max-w-2xl text-base font-medium leading-relaxed text-ink">
             From independent filmmakers and entertainers to educators and digital
             creators, we&apos;re building a platform where every creator has the
             opportunity to earn directly from their content.
